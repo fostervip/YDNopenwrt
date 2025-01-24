@@ -31,8 +31,8 @@ on:
           - ubuntu-22.04
           - ubuntu-latest
 
-#env:
-#  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
@@ -68,9 +68,9 @@ jobs:
       - name: Initialization Values
         run: |
           export BUILD_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
-          #echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
+          echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
           export BUILD_SRC=$(awk -F"=" '/REPO_URL/ {print $NF}' "./compilecfg/${{ inputs.model }}.ini")
-          #echo "BUILD_SRC=$BUILD_SRC" >> $GITHUB_ENV
+          echo "BUILD_SRC=$BUILD_SRC" >> $GITHUB_ENV
 
       - name: Pre Clone
         run: ./pre_clone_action.sh ${{ inputs.model }}
